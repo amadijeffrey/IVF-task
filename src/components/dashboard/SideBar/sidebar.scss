@@ -1,0 +1,11 @@
+.active > .sidebartab, .active > .sublinktab {
+    color: #6b5dd3;
+    background-color:#f0effb ;
+    font-weight: 700;
+    & svg > path[fill]{
+        fill: #6b5dd3;
+    }
+    & svg > path[stroke]{
+        stroke: #6b5dd3;
+    }
+}

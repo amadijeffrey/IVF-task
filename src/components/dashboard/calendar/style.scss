@@ -1,0 +1,85 @@
+
+  
+  #calendar {
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  
+  .month {
+    display: flex;
+    flex-direction: column;
+ 
+  }
+  
+  .month-name {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .weekdays, .days {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .weekdays div, .days div {
+    width: 14.28%;
+    text-align: right;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .weekdays {
+    background: #f0f0f0;
+  }
+  
+  .day {
+    min-height: 100px;
+  }
+  
+  .day {
+    border: 1px solid #ddd;
+    position: relative;
+    padding: 5px;
+  }
+
+  .day > div{
+        text-align: right !important;
+
+  }
+  
+  .day.empty {
+    background: #f9f9f9;
+  }
+
+  .day > .today {
+    background: #6b5dd3; 
+    color: white;
+    border-radius: 50%;
+  }
+
+  .days div{
+    .event {
+        background: #f0effb;
+        color: black;
+        padding: 2px 5px;
+        margin-top: 4px;
+        font-size: 0.75em;
+        border-radius: 3px;
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        & p{
+            font-size: 10px;
+
+        }
+      }
+  }
+ 
+  
