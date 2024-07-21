@@ -1,15 +1,23 @@
 import React,{useRef, useState} from "react";
 import InvisibleIcon from "../assets/visibilityOff.svg";
 import { VisibleIcon } from "../components/icons/visibilityIcon";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Dropdown from "../components/dashboard/DropDown/DropDown";
+import { useDispatch } from "react-redux";
+import { updateClientData } from "../redux/features/client";
 
 const LoginpPage = () => {
 const emailAddressRef = useRef();
   const passwordRef = useRef();
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [formData, setFormData] = useState({
+    userType: ''
+  })
+  const dispatch = useDispatch()
   // const { mutate } = useLogin();
 
 
@@ -18,12 +26,33 @@ const emailAddressRef = useRef();
     setShowPassword((prevState) => !prevState);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // dispatch(
+    //   updateClientData({
+    //     userType: formData.userType,
+    //   })
+    // )
+    window.localStorage.setItem('userType', formData.userType)
+
+    if(formData.userType === 'patient'){
+      navigate('/dashboard/patient/home')
+    }
+    else if(formData.userType === 'doctor'){
+      navigate('/dashboard/doctor/home')
+    }
+    else if(formData.userType === 'admin'){
+      navigate('/dashboard/admin/home')
+    }
+  }
+
   return (
     <div className="flex justify-center items-center h-screen bg-[#f8f9fa]">
-      <div className="flex flex-col gap-y-[2rem] bg-white h-[448px] w-[539px]">
+      <div className="flex flex-col gap-y-[2rem] bg-white w-[539px] p-6 rounded-[4px]">
         <p className="text-2xl font-bold text-center">Welcome to fertility clinic</p>
-        <form >
-          <div className="flex flex-col gap-[0.6375rem] mb-5">
+        <form className="flex flex-col gap-y-5" onSubmit={handleSubmit}>
+          <div className="flex flex-col gap-[0.6375rem]">
             <label
               htmlFor="email"
               className="block text-sm font-medium leading-6 text-gray-900"
@@ -49,7 +78,7 @@ const emailAddressRef = useRef();
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-[0.6375rem] mb-3">
+          <div className="flex flex-col gap-[0.6375rem]">
             <label
               htmlFor="password"
               className="block text-sm font-medium leading-6 text-gray-900"
@@ -90,7 +119,24 @@ const emailAddressRef = useRef();
               </p>
             </div>
           </div>
-          <div className="mb-12">
+          <div>
+          <label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              User type
+            </label>
+          <Dropdown
+            options={["patient", "doctor", 'admin']}
+            value={formData.userType}
+            onChange={(item) =>
+              isError
+                ? setIsError(false)
+                : setFormData({ ...formData, userType: item })
+            }
+          />
+          </div>
+          <div className="">
             <p className="text-sm text-[#8487A3] flex items-center">
               <input
                 type="checkbox"

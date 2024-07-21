@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-// import clientReducer from "./features/client";
-import { userApi } from "./services/dashboardQueries";
+ import { userApi } from "./services/dashboardQueries";
+import clientReducer from "./features/client";
 
 const clientStore = configureStore({
   reducer: {
-    // client: clientReducer,
+    client: clientReducer,
     [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

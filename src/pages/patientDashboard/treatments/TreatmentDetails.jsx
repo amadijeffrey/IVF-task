@@ -9,6 +9,7 @@ import MoreIcon from '../../../assets/more.svg?react'
 import UpdateTreatmentStatusModal from "../../../components/dashboard/Modal/UpdateTreatmentStatus";
 import UpdateTreatmentDiagnosisModal from "../../../components/dashboard/Modal/UpdateDiagnosis";
 import { useNavigate } from "react-router-dom";
+import PdfIcon from '../../../assets/pdf.svg?react'
 
 const PatientTreatmentDetails = () => {
   const [isFetching, setIsFetching] = useState(false);
@@ -95,7 +96,7 @@ const PatientTreatmentDetails = () => {
               </div>
               <div className="flex justify-between">
                 <p className="text-base text-secondary">Status:</p>{" "}
-                <div className="flex items-center border p-2 rounded-[16px] w-[80px] text-[#5925dc] border-[#d9d6fe] bg-[#f4f3ff]">
+                <div className="flex items-center border p-2 rounded-[16px] text-[#5925dc] border-[#d9d6fe] bg-[#f4f3ff]">
         <p className="text-sm font-medium">Ongoing</p>
       </div>
               </div>
@@ -103,9 +104,28 @@ const PatientTreatmentDetails = () => {
         </div>
         <hr className="bg-[#eaecf0] h-[1px]" />
         <p className="font-bold text-lg">Consent form</p>
-        <div>
- 
-       
+        <div className="grid grid-cols-3 gap-x-[16px]">
+         <div className="flex gap-x-[12px] p-[14px] border border-[#eaecf0] rounded-[5px]">
+           <PdfIcon />
+           <div className="">
+            <p className="text-primary font-medium text-base">Informed Consent</p>
+            <p className="text-secondary text-sm">{`Sign date: ${new Date().toLocaleDateString()}`}</p>
+           </div>
+         </div>
+         <div className="flex gap-x-[12px] p-[14px] border border-[#eaecf0] rounded-[5px]">
+           <PdfIcon />
+           <div className="">
+            <p className="text-primary font-medium text-base">Informed Consent</p>
+            <p className="text-secondary text-sm">{`Sign date: ${new Date().toLocaleDateString()}`}</p>
+           </div>
+         </div>
+         <div className="flex gap-x-[12px] p-[14px] border border-[#eaecf0] rounded-[5px]">
+           <PdfIcon />
+           <div className="">
+            <p className="text-primary font-medium text-base">Informed Consent</p>
+            <p className="text-secondary text-sm">{`Sign date: ${new Date().toLocaleDateString()}`}</p>
+           </div>
+         </div>
         </div>
         <hr className="bg-[#eaecf0] h-[1px]" />
         <div>

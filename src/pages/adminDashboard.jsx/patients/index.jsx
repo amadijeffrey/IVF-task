@@ -4,6 +4,7 @@ import DashboardWrapper from '../../../components/dashboard/DashboardWrapper';
 import { useNavigate } from 'react-router-dom';
 import { adminPatientsColumns } from '../../../utils/helpers/columns';
 import InputComponent from '../../../components/dashboard/Input';
+import Dropdown from '../../../components/dashboard/DropDown/DropDown';
 
 
   const data = [
@@ -55,6 +56,7 @@ const AdminPatientManagement = () => {
     const navigate = useNavigate()
     const handleNavigation = () => navigate('/dashboard/admin/patients/detail')
     const columns = adminPatientsColumns(handleNavigation)
+    const [filterParams, setFilterParams] = useState({})
     const [formData, setFormData] = useState({
         plan: "",
       });
@@ -64,7 +66,7 @@ const AdminPatientManagement = () => {
         <DashboardWrapper>
         <p className='font-bold text-2xl mb-[44px]'>Patient Management</p>
         <div className="flex justify-between items-center mb-[24px]">
-          <div className="relative flex items-center rounded-[5px] md:w-[30%] border focus:border-afColor bg-[#fcfcfd]  border-[#dde5e8] ">
+          <div className="relative flex items-center rounded-[5px] md:w-[30%] ">
             <InputComponent
               placeholder="search by name"
               className={"bg-white"}
@@ -77,16 +79,8 @@ const AdminPatientManagement = () => {
             />
           </div>
           <div className="flex gap-x-[5px]">
-            {!isLitePlan ? (
-              <NewDropdown
-                className="bg-white"
-                objectOptions={updatedPlansArray}
-                keySelector={"name"}
-                value={formData?.plan || "Sub Plans"}
-                onChange={(option) => handleSelectedPlan(option)}
-              />
-            ) : (
-              <NewDropdown
+         
+              <Dropdown
                 className="bg-white"
                 options={["Active", "Inactive", "All"]}
                 value={
@@ -104,8 +98,8 @@ const AdminPatientManagement = () => {
                   })
                 }
               />
-            )}
-            <NewDropdown
+         
+            <Dropdown
               className="bg-white"
               options={["Active", "Inactive", "All"]}
               value={

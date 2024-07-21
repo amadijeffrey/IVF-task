@@ -12,6 +12,8 @@ import LogoutIcon from "../../../assets/sidebar/logout.svg?react";
 import TrackingIcon from "../../../assets/sidebar/tracking.svg?react";
 import PaymentIcon from "../../../assets/sidebar/payment.svg?react";
 import SpecimenIcon from "../../../assets/sidebar/beaker.svg?react";
+import SettingsIcon from "../../../assets/sidebar/settings.svg?react";
+import StaffIcon from "../../../assets/sidebar/staff.svg?react";
 import "./sidebar.scss";
 
 const doctorCategory = [
@@ -99,7 +101,7 @@ export const adminCategory = [
   {
     title: "Staff",
     path: "/dashboard/admin/staff",
-    icon: <TrackingIcon />,
+    icon: <StaffIcon />,
   },
   {
     title: "Management",
@@ -120,11 +122,41 @@ export const adminCategory = [
     title: "Schedules",
     path: "/dashboard/admin/schedules",
     icon: <SchedulesIcon />,
+    sublinks: [
+      {
+        title: "Appointments",
+        path: "/dashboard/admin/schedules/appointments",
+      },
+      {
+        title: "Staff Schedules",
+        path: "/dashboard/admin/schedules/staff",
+      },
+      {
+        title: "Requests",
+        path: "/dashboard/admin/schedules/requests",
+      },
+    ],
+  },
+  {
+    title: "Treatment plans",
+    path: "/dashboard/admin/treatmentPlans",
+    icon: <TrackingIcon />,
+  },
+  {
+    title: "Payments",
+    path: "/dashboard/admin/payments",
+    icon: <PaymentIcon />,
+  },
+  {
+    title: "Settings",
+    path: "/dashboard/admin/setting",
+    icon: <SettingsIcon />,
   },
 ];
 
 const Sidebar = ({ type }) => {
   const location = useLocation();
+  const navigate = useNavigate()
 
   const isActiveRoute = (route) => {
     return location.pathname === route.path || (route.sublinks && route.sublinks.some(sublink => location.pathname === sublink.path));
@@ -148,9 +180,7 @@ const Sidebar = ({ type }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem(utils.tokenVar);
-    localStorage.removeItem("SAVED_USER_INFO");
-    window.location.href = "/login";
+    navigate("/");
   };
 
   let sidebarRoutes;

@@ -11,43 +11,20 @@ import CreateAppointmentModal from "../../../components/dashboard/Modal/CreateAp
 import MoreIcon from '../../../assets/more.svg?react'
 import UpdateTreatmentStatusModal from "../../../components/dashboard/Modal/UpdateTreatmentStatus";
 import UpdateTreatmentDiagnosisModal from "../../../components/dashboard/Modal/UpdateDiagnosis";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import CustomTable from "../../../components/dashboard/Table/CustomTable";
 
 const TreatmentDetails = () => {
   const [isFetching, setIsFetching] = useState(false);
   const navigate = useNavigate()
+  const {id} = useParams()
   const [showModal, setShowModal] = useState({
     status: false,
     diagnosis: false,
     prescription: false,
   })
   const [isOpen, setOpen] = useState(false)
-  const medicalHistory = [
-    {
-      illness: "Hypertension",
-      treatmentType: "Medical Treatment",
-      year: "2010",
-      medication: "Lisinopril",
-    },
-    {
-      illness: "Update treatment plan",
-      treatmentType: "Medical Treatment",
-      year: "2012",
-      medication: "Atovastatin",
-    },
-    {
-      illness: "Diabetes Mellitis Type 2",
-      treatmentType: "Surgical Treatment",
-      year: "2015",
-      medication: "Methformin",
-    },
-    {
-      illness: "Appendectomy",
-      treatmentType: "Surgical Treatment",
-      year: "2016",
-      medication: "",
-    },
-  ];
+
   return (
     <>
     {showModal.status && <UpdateTreatmentStatusModal handleClose={() => setShowModal({status: false })} /> }
@@ -55,7 +32,7 @@ const TreatmentDetails = () => {
     {showModal.diagnosis && <UpdateTreatmentDiagnosisModal handleClose={() => setShowModal({prescription: false })} /> }
     <div>
       <DashboardWrapper>
-        {isOpen && <div className="fixed top-0 bottom-0 right-0 left-0  z-10" onClick={() => setOpen(false)}>
+        {isOpen && <div className="fixed top-0 bottom-0 right-0 left-0 z-10" onClick={() => setOpen(false)}>
           <div className="bg-white p-[14px] shadow-[0px_1px_4px_1.5px_rgba(16,24,40,0.1)] rounded-[7px] absolute z-100 top-[215px] right-[40px] flex flex-col gap-y-[16px]">
             <p className="text-base text-secondary cursor-pointer" onClick={() => (
               setOpen(false),
@@ -75,7 +52,7 @@ const TreatmentDetails = () => {
           <p className="font-bold text-2xl">Treatment Plan Details</p>
           <div className="flex items-center gap-x-[20px]">
             <Button className=" bg-primary text-white" text={'Update status'} onClick={() => setShowModal({status: true})} />
-            <button className="h-[44px] bg-white border border-[#d0d5dd]" onClick={() => setOpen(true)}>
+            <button className="h-[44px] bg-white border border-[#d0d5dd] focus:outline-none" onClick={() => setOpen(true)}>
               <MoreIcon />
             </button>
           </div>
@@ -96,11 +73,13 @@ const TreatmentDetails = () => {
               </div>
               <div className="flex justify-between">
                 <p className="text-base text-secondary">Diagnosis:</p>{" "}
-                <p className="font-medium text-base">85kg</p>
+                <p className="font-medium text-base"></p>
               </div>
               <div className="flex justify-between">
                 <p className="text-base text-secondary">Status:</p>{" "}
-                <p className="font-medium text-base">85kg</p>
+                <div className="flex items-center border p-2 rounded-[16px] w-[80px] text-[#5925dc] border-[#d9d6fe] bg-[#f4f3ff]">
+          <p className="text-sm font-medium">Ongoing</p>
+        </div>
               </div>
           </div>
         </div>
@@ -111,6 +90,8 @@ const TreatmentDetails = () => {
        
         </div>
         <hr className="bg-[#eaecf0] h-[1px]" />
+        <p className="font-bold text-lg">Appointment Timeline</p>
+        <CustomTable />
         <p className="font-bold text-lg">Reports</p>
         <Report />
         <hr className="bg-[#eaecf0] h-[1px]" />

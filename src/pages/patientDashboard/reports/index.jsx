@@ -76,7 +76,7 @@ const ReportManagement = () => {
         key: 'action',
         width: '20%',
         dataIndex: 'action',
-        render: () => <button className="bg-[#f0effb] text-sm border border-[#e9d7fe] text-[#6941c6] h-[40px] flex justify-center items-center shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" onClick={() => navigate('/dashboard/doctor/reports/detail')}>View Details</button>,
+        render: () => <button className="bg-[#f0effb] text-sm border border-[#e9d7fe] text-[#6941c6] h-[40px] flex justify-center items-center shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" onClick={() => navigate('/dashboard/patient/reports/detail')}>View Details</button>,
       },
     ];
     

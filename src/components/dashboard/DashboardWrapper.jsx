@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import Sidebar from "./SideBar";
 import Navbar from "./NavBar";
+import { useSelector } from "react-redux";
 
 const DashboardWrapper = ({ children }) => {
   const [navOpened, setNavOpened] = useState(false);
+  const client = useSelector((state) => state.client.value);
 
   const handleNavToggle = () => {
     setNavOpened(!navOpened);
@@ -16,7 +18,7 @@ const DashboardWrapper = ({ children }) => {
             <div
               className='w-1/5 z-10 h-full border-r'
             >
-              <Sidebar type={'patient'} />
+              <Sidebar type={window.localStorage.getItem('userType')} />
             </div>
 
           <div className=" w-4/5">

@@ -7,7 +7,7 @@ const CustomTable = ({ columns, data, showPagination }) => {
   return (
     <>
     <div className="border border-[#eaecf0] rounded-[4px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.1)]">
-      {data.length > 0 ?
+      {data && data.length > 0 ?
       <table className="relative bg-white w-full table-fixed text-left text-[#475467] font-medium table rounded-b-[4px]">
         <thead>
           <tr className='h-[44px] border-b border-[#eaecf0] sticky top-0 z-10 bg-[#f5f6f7]'>
@@ -22,7 +22,7 @@ const CustomTable = ({ columns, data, showPagination }) => {
           {data.map((item, rowIndex) => (
             <tr key={rowIndex} className='h-9 md:h-12 border-b border-[#eaecf0]'>
               {columns.map((col) => (
-                <td key={col.key} className='text-sm font-normal px-[24px] py-[16px] truncate'>{col.render ? col.render(item[col.dataIndex]) : item[col.dataIndex]}
+                <td key={col.key} className='text-sm font-normal px-[24px] py-[16px] truncate'>{col.render ? col.render(item[col.dataIndex], item) : item[col.dataIndex]}
 </td>
               ))}
             </tr>
@@ -31,8 +31,9 @@ const CustomTable = ({ columns, data, showPagination }) => {
         </tbody>
       </table>
       :
-       <div className='flex justify-center items-center w-full h-[250px]'>
+       <div className='flex flex-col justify-center items-center w-full h-[250px]'>
         <img src={EmptyIcon} />
+        <p>No data yet</p>
         </div>}
     </div>
      {showPagination && <div className="flex justify-between items-center bg-white py-[12px] px-[24px]">

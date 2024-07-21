@@ -67,7 +67,18 @@ const DoctorDashboardPage = () => {
            <DoughnutChart />
           </div>
           <div className="p-[20px] w-[49%] flex flex-col gap-y-[16px] border border-[#eaecf0] rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]">
-            <p className="font-bold text-lg">Today's appointment</p>
+          <div className="flex justify-between items-center">
+           <p className="font-bold text-lg">Appointments</p>
+           <Dropdown
+            options={["Today", "All"]}
+            value={formData.day}
+            onChange={(item) =>
+              isError
+                ? setIsError(false)
+                : setFormData({ ...formData, gender: item })
+            }
+          />
+           </div>
             <div className="flex flex-col gap-y-[16px] max-h-[80%]">
               <div className="h-[124px] rounded-[6px] flex p-[12px] bg-[#090f47] text-white flex flex-col justify-between">
                 <p className="text-[10px]">now</p>

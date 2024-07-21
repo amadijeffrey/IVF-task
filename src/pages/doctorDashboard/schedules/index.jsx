@@ -12,7 +12,7 @@ const Schedules = () => {
     appointment: false,
     appointmentDetails: false,
     flagAppointment: false,
-    rescheduleAppointment: false
+    rescheduleAppointment: false,
   });
 
   const events = [
@@ -23,8 +23,8 @@ const Schedules = () => {
   ];
 
   const handleSelect = (item) => {
-    setShowModal({ appointmentDetails: true })
-  }
+    setShowModal({ appointmentDetails: true });
+  };
 
   return (
     <div>
@@ -46,14 +46,14 @@ const Schedules = () => {
           )}
         />
       )}
-        {showModal.rescheduleAppointment && (
+      {showModal.rescheduleAppointment && (
         <RescheduleAppointmentModal
           handleClose={() => setShowModal({ rescheduleAppointment: false })}
         />
       )}
-         {showModal.flagAppointment && (
+      {showModal.flagAppointment && (
         <FlagAppointmentModal
-          handleClose={() => setShowModal({flagAppointment: false })}
+          handleClose={() => setShowModal({ flagAppointment: false })}
         />
       )}
       <DashboardWrapper>

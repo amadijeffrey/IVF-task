@@ -9,6 +9,10 @@ const TreatmentTimelineModal = ({handleClose}) => {
 
     })
     const [isError, setIsError] = useState(false)
+
+    const createTreatmentTimeline = () => {
+      
+    }
   return (
     <Modal modalTitle={"Treatment Timeline"} submitText={"Create Timeline"} onClick={() => submitButtonRef.current.click()} onClose={handleClose} >
         <form className="space-y-6">

@@ -25,11 +25,15 @@ const AppointmentDetailsModal = ({handleClose, handleOpenSecondModal, handleOpen
               <p className="font-medium text-base">{new Date().toLocaleTimeString()}</p>
             </div>
             <div className="flex justify-between">
-              <p className="text-base text-secondary">Doctor's Name:</p>{" "}
+              <p className="text-base text-secondary">Patient's Name:</p>{" "}
               <p className="font-medium text-base">Justin Septimus</p>
             </div>
             <div className="flex justify-between">
-              <p className="text-base text-secondary">Meeting Type:</p>{" "}
+              <p className="text-base text-secondary">Status:</p>{" "}
+              <p className="font-medium text-base">Pending</p>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-base text-secondary">Meeting Type:</p>{"Virtual "}
               <p className="font-medium text-base"></p>
             </div>
           </div>
@@ -52,7 +56,7 @@ const AppointmentDetailsModal = ({handleClose, handleOpenSecondModal, handleOpen
           </div>
           <Button text='Join' className='bg-primary text-white' />
         </div>
-        <div className="bg-[#f8f9fa80] border border-[#eaecf0] p-[12px] rouned-[4px]">
+        <div className="bg-[#f8f9fa80] border border-[#eaecf0] p-[12px] rounded-[4px]">
           <p className="mb-[8px] text-primary font-bold text-sm">Additional Information</p>
           <p className="text-secondary text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam nulla id tempora nihil officia delectus, laborum eius hic cum optio ab blanditiis eligendi. Voluptate enim repellendus, eveniet inventore ipsum beatae?</p>
         </div>

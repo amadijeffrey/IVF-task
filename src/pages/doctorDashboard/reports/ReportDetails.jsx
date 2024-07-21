@@ -3,9 +3,13 @@ import DashboardWrapper from "../../../components/dashboard/DashboardWrapper";
 import BackArrow from "../../../assets/backArrow.svg?react";
 import Button from "../../../components/dashboard/ButtonComponent";
 import ReportIcon from '../../../assets/report.svg?react'
+import { useNavigate } from "react-router-dom";
 
 
 const ReportDetails = () => {
+  const navigate = useNavigate()
+
+  
   return (
     <div>
       <DashboardWrapper>

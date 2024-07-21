@@ -6,6 +6,8 @@ import Button from "../../../components/dashboard/ButtonComponent";
 import TreatmentTimelineModal from "../../../components/dashboard/Modal/TreatmentTimeline";
 import CreateTreatmentPlanModal from "../../../components/dashboard/Modal/CreateTreatmentPlan";
 import { useNavigate } from "react-router-dom";
+import CustomTable from "../../../components/dashboard/Table/CustomTable";
+import { patientAppointmentsColumns, patientMedicalHistoryColumns } from "../../../utils/helpers/columns";
 
 const PatientDetails = () => {
   const [isFetching, setIsFetching] = useState(false);
@@ -14,6 +16,8 @@ const PatientDetails = () => {
     addTreatmentPlan: false,
     treatmentTimeline: false
   })
+  const medicalHistoryColumns = patientMedicalHistoryColumns()
+  const appointmentsColumns = patientAppointmentsColumns()
   const medicalHistory = [
     {
       illness: "Hypertension",
@@ -40,6 +44,33 @@ const PatientDetails = () => {
       medication: "",
     },
   ];
+
+  const appointmentHistory = [
+    {
+      illness: "Hypertension",
+      type: "Initial co",
+      year: "2010",
+      medication: "Lisinopril",
+    },
+    {
+      illness: "Update treatment plan",
+      type: "Medical Treatment",
+      year: "2012",
+      medication: "Atovastatin",
+    },
+    {
+      illness: "Diabetes Mellitis Type 2",
+      type: "Surgical Treatment",
+      year: "2015",
+      medication: "Methformin",
+    },
+    {
+      illness: "Appendectomy",
+      type: "Surgical Treatment",
+      year: "2016",
+      medication: "",
+    },
+  ];
   return (
     <div>
       {showModal.addTreatmentPlan && <CreateTreatmentPlanModal handleClose={() => setShowModal({addTreatmentPlan: false })} handleOpenSecondModal={() => (
@@ -60,13 +91,24 @@ const PatientDetails = () => {
           <Button className="bg-primary text-white" text='Add Treatment Plan' onClick={() => setShowModal({addTreatmentPlan: true})}/>
         </div>
         <div className="py-[32px] px-[24px] border border-[#d0d5dd] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] flex flex-col gap-y-[16px] rounded-[7px]">
-          <div className="flex gap-x-[12px]">
-            <div className="w-[80px] h-[80px] rounded-full">
-              <img src={picture1} className="w-full h-full object-cover" />
+          <div className="grid grid-cols-4">
+            <div className="flex flex-col gap-y-[12px]">
+              <p className="text-secondary text-sm">Patient's Name</p>
+              <p className="font-medium text-lg">Haylie Rodser</p>
             </div>
-            <div>
-              <p className="font-bold text-lg">Haylie Rodser</p>
-              <p className="text-sm">ATS-20240701-001</p>
+            <div className="flex flex-col gap-y-[12px]">
+              <p className="text-secondary text-sm">Treatment Status</p>
+              <div className="flex items-center border justify-center py-1 rounded-[16px] w-[80px] text-[#026aa2] border-[#b9e6fe] bg-[#f0f9ff]">
+                    <p className="text-sm font-medium">{"Ongoing"}</p>
+                  </div>
+            </div>
+            <div className="flex flex-col gap-y-[12px]">
+            <p className="text-secondary text-sm">Treatment Plan</p>
+            <p className="font-medium text-sm">Estrogen Hormone Therapy</p>
+            </div>
+            <div className="flex flex-col gap-y-[12px]">
+            <p className="text-secondary text-sm">Start Date</p>
+            <p className="font-medium text-sm">{new Date().toLocaleDateString()}</p>
             </div>
           </div>
           <hr className="bg-[#d0d5dd] h-[1px]" />
@@ -105,121 +147,15 @@ const PatientDetails = () => {
             </div>
           </div>
         </div>
-        <p className="font-bold text-base">Medical History</p>
+        <p className="font-bold text-lg">Medical History</p>
         <div>
-          <table className="relative bg-white w-full table-fixed text-left text-[#475467] font-medium max-h-[300px] overflow-auto">
-            <thead>
-              <tr className="h-[44px] border-[#eaecf0] sticky top-0 z-10 bg-[#f5f6f7]">
-                <th className="text-xs w-[15%] px-[24px] font-bold">Illness</th>
-                <th className="text-xs w-[15%] px-[24px] font-bold">
-                  Type of Treatment
-                </th>
-                <th className="text-xs w-[20%] px-[24px] font-bold">
-                  Year of Diagnosis
-                </th>
-                <th className="text-xs w-[15%] px-[24px] font-bold">
-                  Medication
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {medicalHistory.length > 0 ? (
-                medicalHistory?.map((el, i) => {
-                  return (
-                    <tr
-                      key={i}
-                      className="h-9 md:h-12 border-b border-[#eaecf0]"
-                    >
-                      <td className="text-sm font-normal px-[24px] py-[16px]">
-                        {el?.illness}
-                      </td>
-                      <td className="text-sm font-normal px-[24px] py-[16px]">
-                        {el?.treatmentType}
-                      </td>
-                      <td className="text-sm font-normal truncate px-[24px] py-[16px]">
-                        {el?.year}
-                      </td>
-                      <td className="text-sm font-normal truncate px-[24px] py-[16px]">
-                        {el?.medication}
-                      </td>
-                    </tr>
-                  );
-                })
-              ) : (
-                <tr className="flex justify-center items-center w-full h-[350px]">
-                  <td />
-                  <td />
-                  <td className="text-lg">No data available</td>
-                  <td />
-                  <td />
-                </tr>
-              )}
-            </tbody>
-            {isFetching && (
-              <tbody className="absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center bg-[#0000004d]">
-                <tr>
-                  <td>
-                    <svg
-                      aria-hidden="true"
-                      className="w-8 h-8 text-gray-200 animate-spin fill-blue-600"
-                      viewBox="0 0 100 101"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                        fill="currentFill"
-                      />
-                    </svg>
-                  </td>
-                </tr>
-              </tbody>
-            )}
-          </table>
+      <CustomTable columns={medicalHistoryColumns} data={medicalHistory} />
         </div>
-        <p className="font-bold text-base">Current Treatment Plan</p>
-        <div>
-          <table className="relative bg-white w-full table-fixed text-left text-[#475467] font-medium max-h-[300px] overflow-auto">
-            <thead>
-              <tr className="h-[44px] border-[#eaecf0] sticky top-0 z-10 bg-[#f5f6f7]">
-                <th className="text-xs w-[15%] px-[24px] font-bold">
-                  Name of Treatment
-                </th>
-                <th className="text-xs w-[15%] px-[24px] font-bold">
-                  Treatment Status
-                </th>
-                <th className="text-xs w-[20%] px-[24px] font-bold">
-                  Start Date
-                </th>
-                <th className="text-xs w-[15%] px-[24px] font-bold">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="text-sm px-[24px] py-[16px] font-normal">
-                  Estrogen Hormone Therapy
-                </td>
-                <td className="text-xs px-[24px] py-[16px]">
-                  <div className="flex items-center border p-2 rounded-[16px] w-[150px] text-[#026aa2] border-[#b9e6fe] bg-[#f0f9ff]">
-                    <p className="text-sm font-medium">{"Ongoing treatment"}</p>
-                  </div>
-                </td>
-                <td className="text-sm  px-[24px] py-[16px]">
-                  {new Date().toLocaleDateString()}
-                </td>
-                <td className="text-sm px-[24px] py-[16px]">
-                  <button className="bg-[#f0effb] text-sm border border-[#e9d7fe] text-[#6941c6] h-[40px] flex justify-center items-center shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]">
-                    View Details
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="flex justify-between items-center">
+        <p className="text-lg font-bold">Appointments</p>
+        <Button text={'Schedule Follow-up'} className='text-[#6b5dd3] bg-white' border={true}/>
         </div>
+        <CustomTable columns={appointmentsColumns} data={appointmentHistory} />
       </div>
     </DashboardWrapper>
     </div>

@@ -11,6 +11,7 @@ import SpecimenStatus from "./SpecimenStatus";
 import Tracking from "./Tracking";
 import Slider from "../../../components/dashboard/Slider";
 import { useNavigate } from "react-router-dom";
+import Timeline from "../../../components/dashboard/Timeline";
 
 const TrackingDetails = () => {
   const [isFetching, setIsFetching] = useState(false);

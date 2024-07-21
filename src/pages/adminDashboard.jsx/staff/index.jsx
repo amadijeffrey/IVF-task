@@ -6,6 +6,8 @@ import Calendar from "../../../components/dashboard/calendar";
 import AppointmentDetailsModal from "../../../components/dashboard/Modal/AppointmentDetails";
 import FlagAppointmentModal from "../../../components/dashboard/Modal/FlagAppointment";
 import RescheduleAppointmentModal from "../../../components/dashboard/Modal/RescheduleAppointment";
+import { adminStaffColumns } from "../../../utils/helpers/columns";
+import CustomTable from "../../../components/dashboard/Table/CustomTable";
 
 const StaffManagement = () => {
   const [showModal, setShowModal] = useState({
@@ -15,20 +17,58 @@ const StaffManagement = () => {
     rescheduleAppointment: false
   });
 
-  const events = [
-    { date: "2024-06-28", title: "Specimen collection", time: "10 AM" },
-    { date: "2024-06-26", title: "Ovulation Induction", time: "1 PM" },
-    { date: "2024-06-06", title: "Check up", time: "1 PM" },
-    { date: "2024-06-11", title: "Embryo transfer", time: "1 PM" },
-  ];
+  const data = [
+    {
+        name: 'Patience Oliver',
+        patient_id: 'user_54643243',
+        gender: "Female",
+        age: "32",
+    },
+    {
+        name: 'Patience Oliver',
+        patient_id: 'user_54643243',
+        gender: "Female",
+        age: "32"
+    },
+    {
+        name: 'Kayor Bator',
+        patient_id: 'user_54643243',
+        gender: "Female",
+        age: "32"
+    },
+    {
+        name: 'Patience Oliver',
+        patient_id: 'user_54643243',
+        gender: "Female",
+        age: "32"
+    },
+    {
+        name: 'Patience Oliver',
+        patient_id: 'user_54643243',
+        gender: "Female",
+        age: "32"
+    },
+    {
+        name: 'Patience Oliver',
+        patient_id: 'user_54643243',
+        gender: "Female",
+        age: "32"
+    },
+    {
+        name: 'Patience Oliver',
+        patient_id: 'user_54643243',
+        gender: "Female",
+        age: "32"
+    }
+  ]
 
   const handleSelect = (item) => {
     setShowModal({ appointmentDetails: true })
   }
 
-  const handleNavigation = () => navigate('/dashboard/admin/patients/detail')
+  const handleNavigation = () => navigate('/dashboard/admin/staff/detail')
 
-  const columns = adminPatientsColumns(handleNavigation)
+  const columns = adminStaffColumns(handleNavigation)
 
   return (
     <div>

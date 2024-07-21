@@ -7,13 +7,18 @@ export const getStatusBadge = (status) => {
           <p className="text-sm font-medium">{status}</p>
         </div>
       );
-    case "Completed":
     case "Ready for transfer":
       return (
         <div className="flex items-center border p-2 rounded-[16px] w-[140px] text-[#067647] border-[#abefc6] bg-[#ecfdf3]">
           <p className="text-sm font-medium">{status}</p>
         </div>
       );
+      case "Completed":
+        return (
+          <div className="flex items-center border p-2 rounded-[16px] w-[100px] text-[#067647] border-[#abefc6] bg-[#ecfdf3]">
+            <p className="text-sm font-medium">{status}</p>
+          </div>
+        );
     case "Cancelled":
     case "Failed":
       return (
@@ -25,3 +30,12 @@ export const getStatusBadge = (status) => {
       return <span>{status}</span>;
   }
 };
+
+export function convertToValidPrice(price) {
+  if (price == null)return
+  const Arr = (price.toString()).split('')
+  for (let i = Arr.length - 3; i > 0; i -= 3) {
+     Arr.splice(i, 0, ',')
+  }
+  return '₦' + Arr.join('')
+}

@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import DashboardWrapper from "../../../components/dashboard/DashboardWrapper";
 import Button from "../../../components/dashboard/ButtonComponent";
 import Medications from "./Medications";
 import Treatments from "./Treatment";
 import Results from "./Result";
 import ProgressBar from "../../../components/dashboard/ProgressBar";
+import { useNavigate } from "react-router-dom";
+import Timeline from "../../../components/dashboard/Timeline";
+import Dropdown from "../../../components/dashboard/DropDown/DropDown";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
 
 const PatientDashboardPage = () => {
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    day: 'Today'
+  })
   return (
     <DashboardWrapper>
       <div>
@@ -22,7 +29,7 @@ const PatientDashboardPage = () => {
              <p className="font-medium text-[15px] mb-[9px]">You are 15% setup</p>
              <ProgressBar />
           </div>
-          <Button text={'Go to profile'} className='bg-white text-[#6b5dd3]' />
+          <Button text={'Go to profile'} className='bg-white text-[#6b5dd3]' onClick={() => navigate('/dashboard/patient/profile')}/>
           </div>
         </div>
         <div className="flex gap-x-[24px]">
@@ -32,9 +39,20 @@ const PatientDashboardPage = () => {
            <Treatments />
           </div>
           <div className="w-[30%]">
-          <div className="p-[20px] w-full flex flex-col gap-y-[16px] border border-[#eaecf0] rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]">
-            <p className="font-bold text-lg">Today's appointment</p>
-            <div className="flex flex-col gap-y-[16px] max-h-[80%]">
+          <div className="p-[20px] w-full flex flex-col gap-y-[16px] border border-[#eaecf0] rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] mb-[24px]">
+           <div className="flex justify-between items-center">
+           <p className="font-bold text-lg">Appointments</p>
+           <Dropdown
+            options={["Today", "All"]}
+            value={formData.day}
+            onChange={(item) =>
+              isError
+                ? setIsError(false)
+                : setFormData({ ...formData, gender: item })
+            }
+          />
+           </div>
+            <div className="flex flex-col gap-y-[16px] max-h-[400px] overflow-auto">
               <div className="h-[124px] rounded-[6px] flex p-[12px] bg-[#090f47] text-white flex flex-col justify-between">
                 <p className="text-[10px]">now</p>
                 <div className="flex justify-between">
@@ -66,8 +84,32 @@ const PatientDashboardPage = () => {
                 </div>
                 <p className="text-primary text-xs">Lana Robinson</p>
               </div>
+              <div className="h-[64px] rounded-[6px] flex p-[12px] border-l-[4px] border-[#090f47] bg-[#f0effb] justify-between items-center">
+                <div className="flex items-center">
+                  <div className="mr-[16px] ">
+                    <p className="text-xs text-secondary mb-[2px] leading-[18px]">
+                      {daysOfWeek[new Date().getDay()]}
+                    </p>
+                    <p className="text-lg text-primary font-medium">
+                      {new Date().getDate()}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[15px] font-medium leading-[20px] text-primary mb-[2px]">
+                      Follow up care
+                    </p>
+                    <p className="text-xs text-secondary">12pm - 1pm</p>
+                  </div>
+                </div>
+                <p className="text-primary text-xs">Lana Robinson</p>
+              </div>
             </div>
           </div>
+          <div  className="p-4 border border-[#eaecf0] rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]">
+            <p className="text-lg text-primary font-bold mb-[10px]">Tracking</p>
+          <Timeline />
+          </div>
+          
           </div>
         </div>
       </div>

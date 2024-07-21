@@ -16,8 +16,8 @@ const MedicalHistory = ({handleSelect}) => {
   return (
     <>
       <p className="text-xl font-bold text-primary">Medical History</p>
-      <div className="w-[80%] ">
-        <div className="rounded-[4px] border border-[[#eaecf0] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] flex flex-col gap-y-[16px] mb-[24px]">
+      <div className="w-[80%] flex flex-col gap-y-[24px]">
+        <div className="rounded-[4px] border border-[[#eaecf0] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] flex flex-col gap-y-[16px]">
           <div className="py-[16px] px-[24px] bg-[#f5f6f7] border-b border-[#eaecf0] font-bold text-primary">
             Medical Details
           </div>
@@ -159,9 +159,9 @@ const MedicalHistory = ({handleSelect}) => {
                   Hepatitis Status 
                 </label>
                 <div className="grid grid-cols-3">
-                    <div><input type='radio' /> <span>Hepatitis A</span></div>
-                    <div><input type='radio' /> <span>Hepatitis B</span></div>
-                    <div><input type='radio' /> <span>Hepatitis C</span></div>
+                    <div><input type='radio' name='H-status'/> <span>Hepatitis A</span></div>
+                    <div><input type='radio' name='H-status'/> <span>Hepatitis B</span></div>
+                    <div><input type='radio' name='H-status'/> <span>Hepatitis C</span></div>
                 </div>
                 <p className="text-red-600 text-sm mt-1">
                   {isError && formData.phone_number.trim() === ""

@@ -5,7 +5,7 @@ import closeIcon from '../../../assets/close.svg'
 
 
 
-const Modal = ({modalTitle, children, onClick, onClose, loading, submitText}) => {
+const Modal = ({modalTitle, children, onClick, onClose, loading, submitText, showButtons=true, disabled=false}) => {
   return ReactDOM.createPortal(
     <div
       className='fixed inset-0 flex items-center justify-center z-10 top-0 left-0 bottom-0 right-0'
@@ -23,14 +23,14 @@ const Modal = ({modalTitle, children, onClick, onClose, loading, submitText}) =>
           <div className="relative z-30 max-h-[500px] overflow-auto">
             {children}
           </div>
-          <div className="flex gap-x-3 mt-[32px] w-full h-[48px]">
+          {showButtons && <div className="flex gap-x-3 mt-[32px] w-full h-[48px]">
             <div className="w-[50%]">
             <Button
             className={'bg-white text-[#002447] border border-[#d0d5dd] w-full'}
               showIcon={false}
               text="Cancel"
               disabled={false}
-              handleClick={onClose}
+              onClick={onClose}
             />
             </div>
             <div className="w-[50%]">
@@ -57,11 +57,11 @@ const Modal = ({modalTitle, children, onClick, onClose, loading, submitText}) =>
               ) : (
                 submitText
               )}
-              disabled={false}
-              handleClick={onClick}
+              disabled={disabled}
+              onClick={onClick}
             />
             </div>
-            </div>
+            </div>}
             </div>
         </div>
       </div>

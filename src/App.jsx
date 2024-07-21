@@ -32,6 +32,17 @@ import AdminSpecimenManagement from "./pages/adminDashboard.jsx/specimen";
 import SampleDetails from "./pages/adminDashboard.jsx/lab/SampleDetails";
 import SpecimenDetails from "./pages/adminDashboard.jsx/specimen/SpecimenDetails";
 import AdminDashboardPage from "./pages/adminDashboard.jsx";
+import StaffManagement from "./pages/adminDashboard.jsx/staff/index.jsx";
+import AdminPatientDetails from "./pages/adminDashboard.jsx/patients/PatientDetails.jsx";
+import AdminAppointments from "./pages/adminDashboard.jsx/appointments/index.jsx";
+import AdminStaffSchedules from "./pages/adminDashboard.jsx/staffSchedules/index.jsx";
+import AdminAppointmentRequests from "./pages/adminDashboard.jsx/appointmentRequests.jsx/index.jsx";
+import AdminAppointmentDetails from "./pages/adminDashboard.jsx/appointments/AppointmentDetails.jsx";
+import AdminSettings from "./pages/adminDashboard.jsx/settings/index.jsx";
+import PatientReportDetails from "./pages/patientDashboard/reports/ReportDetails.jsx";
+import TreatmentPlans from "./pages/adminDashboard.jsx/treatmentPlans/index.jsx";
+import TreatmentPlanDetails from "./pages/adminDashboard.jsx/treatmentPlans/TreatmentPlanDetails.jsx";
+import PatientSchedules from "./pages/patientDashboard/schedules/index.jsx";
 
 function App() {
 
@@ -51,21 +62,21 @@ function App() {
           <Route exact path="/dashboard/doctor/schedules" element={<Schedules />} />
           <Route exact path="/dashboard/doctor/reports" element={<ReportManagement />} />
           <Route exact path="/dashboard/doctor/reports/detail" element={<ReportDetails />} />
-          <Route exact path="/dashboard/doctor/patients/detail" element={<PatientDetails />} />
-          <Route exact path="/dashboard/doctor/treatments/detail" element={<TreatmentDetails />} />
+          <Route exact path="/dashboard/doctor/patients/:id/detail" element={<PatientDetails />} />
+          <Route exact path="/dashboard/doctor/treatments/:id/detail" element={<TreatmentDetails />} />
 
            {/* patient routes */}
            <Route exact path="/dashboard/patient/home" element={<PatientDashboardPage />} />
           <Route exact path="/dashboard/patient/profile" element={<PatientAccount />} />
           <Route exact path="/dashboard/patient/treatments" element={<PatientTreatmentManagement />} />
           <Route exact path="/dashboard/patient/treatments/detail" element={<PatientTreatmentDetails />} />
-          <Route exact path="/dashboard/patient/schedules" element={<Schedules />} />
+          <Route exact path="/dashboard/patient/schedules" element={<PatientSchedules />} />
           <Route exact path="/dashboard/patient/payments" element={<PaymentManagement/>} />
           <Route exact path="/dashboard/patient/payments/detail" element={<PaymentDetails/>} />
           <Route exact path="/dashboard/patient/tracking" element={<TrackingManagement />} />
           <Route exact path="/dashboard/patient/tracking/detail" element={<TrackingDetails />} />
           <Route exact path="/dashboard/patient/reports" element={<PatientReportManagement />} />
-          <Route exact path="/dashboard/patient/reports/detail" element={<ReportDetails />} />
+          <Route exact path="/dashboard/patient/reports/detail" element={<PatientReportDetails />} />
           <Route exact path="/dashboard/patients/detail" element={<PatientDetails />} />
           <Route exact path="/dashboard/treatments/detail" element={<TreatmentDetails />} />
 
@@ -74,6 +85,15 @@ function App() {
            <Route exact path="/dashboard/admin/home" element={<AdminDashboardPage />} />
           <Route exact path="/dashboard/admin/profile" element={<PatientAccount />} />
           <Route exact path="/dashboard/admin/patients" element={<AdminPatientManagement />} />
+          <Route exact path="/dashboard/admin/treatmentPlans" element={<TreatmentPlans />} />
+          <Route exact path="/dashboard/admin/treatmentPlans/:id/detail" element={<TreatmentPlanDetails />} />
+          <Route exact path="/dashboard/admin/patients/detail" element={<AdminPatientDetails />} />
+          <Route exact path="/dashboard/admin/staff" element={<StaffManagement />} />
+          <Route exact path="/dashboard/admin/setting" element={<AdminSettings />} />
+          <Route exact path="/dashboard/admin/schedules/appointments" element={<AdminAppointments />} />
+          <Route exact path="/dashboard/admin/schedules/appointments/detail" element={<AdminAppointmentDetails />} />
+          <Route exact path="/dashboard/admin/schedules/staff" element={<AdminStaffSchedules />} />
+          <Route exact path="/dashboard/admin/schedules/requests" element={<AdminAppointmentRequests />} />
           <Route exact path="/dashboard/admin/management/lab" element={<AdminLabManagement />} />
           <Route exact path="/dashboard/admin/management/lab/detail" element={<SampleDetails />} />
           <Route exact path="/dashboard/admin/management/specimen" element={<AdminSpecimenManagement />} />
